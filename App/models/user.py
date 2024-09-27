@@ -2,9 +2,13 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from App.database import db
 
 class User(db.Model):
+    __tablename__ = "User"
     id = db.Column(db.Integer, primary_key=True)
-    username =  db.Column(db.String(20), nullable=False, unique=True)
+    username =  db.Column(db.String, nullable=False, unique=True)
     password = db.Column(db.String(120), nullable=False)
+    points = db.Column(db.Integer, default=0)
+    participation = db.relationship('Participant', backref='User')
+    
 
     def __init__(self, username, password):
         self.username = username
