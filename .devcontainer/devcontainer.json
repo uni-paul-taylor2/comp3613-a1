@@ -18,7 +18,7 @@
         // python
         "ms-python.python",
         "donjayamanne.python-environment-manager",
-        "GitHub.copilot"
+        //"GitHub.copilot",
         // "kevinrose.vsc-python-indent",
         // "visualstudioexptteam.vscodeintellicode",
         // "njpwerner.autodocstring",
