@@ -20,6 +20,17 @@ def init():
     print('database intialized')
 
 '''
+Competition Commands
+'''
+
+competition_cli = AppGroup('competition', help='Competition management commands')
+
+@competition_cli.command('create')
+@click.argument('filename', default='competition.json')
+def create_competition(filename):
+    pass
+
+'''
 User Commands
 '''
 
@@ -27,7 +38,7 @@ User Commands
 
 # create a group, it would be the first argument of the comand
 # eg : flask user <command>
-user_cli = AppGroup('user', help='User object commands') 
+user_cli = AppGroup('user', help='User management commands') 
 
 # Then define the command and any parameters and annotate it with the group (@)
 @user_cli.command("create", help="Creates a user")
