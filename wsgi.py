@@ -18,7 +18,7 @@ migrate = get_migrate(app)
 def init():
     initialize()
     print('database intialized')
-    print(create_competition('competition.json'))
+    # print(create_competition('competition.json'))
 
 '''
 Competition Commands
@@ -41,6 +41,8 @@ def competition_scores(competition_name):
         print(list_competitors(competition_name))
     except:
         print(f"Error listing scores of the competition: {competition_name}")
+
+app.cli.add_command(competition_cli)
 
 '''
 User Commands
@@ -66,11 +68,11 @@ def create_user_command(username, password):
 # this command will be : flask user create bob bobpass
 
 @user_cli.command('ranking')
-@click.argument('username', default='rob')
+@click.argument('username', default='bob')
 @click.argument('competition_name', default='code4bread')
 def user_ranking(username,competition_name):
     try:
-        print(get_user_ranking(username,competition_name))
+        print(f"{username}, your rank in the competition {competition_name} is "+str(get_user_ranking(username,competition_name)))
     except:
         print(f"Failed to get the ranking of '{username}' in the competition '{competition_name}'")
 

@@ -1,5 +1,6 @@
 from werkzeug.security import check_password_hash, generate_password_hash
 from App.database import db
+import json
 
 class Participant(db.Model): #The bridge table
     __tablename__ = "Participant"
@@ -17,4 +18,9 @@ class Participant(db.Model): #The bridge table
         db.session.add(self)
 
     def __repr__(self):
-        return f" <user:{self.user_id}, competition:{self.competition_id}, points:{self.points}, time:{self.time}> "
+        return json.dumps({
+            "user": self.user_id,
+            "competition": self.competition_id,
+            "points": self.points,
+            "time": self.time
+        })

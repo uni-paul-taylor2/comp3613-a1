@@ -1,5 +1,6 @@
 from werkzeug.security import check_password_hash, generate_password_hash
 from App.database import db
+import json
 
 class User(db.Model):
     __tablename__ = "User"
@@ -13,6 +14,12 @@ class User(db.Model):
     def __init__(self, username, password):
         self.username = username
         self.set_password(password)
+
+    def __repr__(self):
+        return json.dumps({
+            'id': self.id,
+            'username': self.username
+        })
 
     def get_json(self):
         return{
