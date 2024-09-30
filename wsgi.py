@@ -36,13 +36,12 @@ def create_competition_(filename):
 
 @competition_cli.command('list', help="lists all the competitions existing")
 def list_competitions_():
-    print(list_competitions())
-    #try:
-        #print(list_competitions())
-    #except:
-        #print("Failed to list out competitions :(")
+    try:
+        print(list_competitions())
+    except:
+        print("Failed to list out competitions :(")
 
-@competition_cli.command('scores')
+@competition_cli.command('scores', help="displays the scores for a specified competition")
 @click.argument('competition_name', default='code4bread')
 def competition_scores(competition_name):
     try:
