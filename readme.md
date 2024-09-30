@@ -8,6 +8,9 @@
 # Flask MVC Template
 A template for flask applications structured in the Model View Controller pattern [Demo](https://dcit-flaskmvc.herokuapp.com/). [Postman Collection](https://documenter.getpostman.com/view/583570/2s83zcTnEJ)
 
+# Usage
+See [Flask Commands](#flask-commands) that documents each flask command available
+
 
 # Dependencies
 * Python3/pip3
@@ -61,30 +64,19 @@ in configuration information via environment tab of your render project's dashbo
 
 # Flask Commands
 
-wsgi.py is a utility script for performing various tasks related to the project. You can use it to import and test any code in the project. 
-You just need create a manager command function, for example:
-
-```python
-# inside wsgi.py
-
-user_cli = AppGroup('user', help='User object commands')
-
-@user_cli.cli.command("create-user")
-@click.argument("username")
-@click.argument("password")
-def create_user_command(username, password):
-    create_user(username, password)
-    print(f'{username} created!')
-
-app.cli.add_command(user_cli) # add the group to the cli
-
-```
-
-Then execute the command invoking with flask cli with command name and the relevant parameters
-
-```bash
-$ flask user create bob bobpass
-```
+| Command                                 | Description                                                        | Arguments                                     | Default Value            |
+|-----------------------------------------|--------------------------------------------------------------------|-----------------------------------------------|--------------------------|
+| `flask init`                           | Creates and initializes the database.                             | None                                          | N/A                      |
+| **Competition Commands**                |                                                                    |                                               |                          |
+| `flask competition create [filename]`  | Creates a competition record from a specified JSON file.         | `filename`: The JSON file (e.g., `competition.json`) | `competition.json`       |
+| `flask competition list`                | Lists all existing competitions.                                   | None                                          | N/A                      |
+| `flask competition scores [name]`      | Displays the scores for a specified competition.                  | `competition_name`: The competition name     | `code4bread`            |
+| **User Commands**                       |                                                                    |                                               |                          |
+| `flask user create <username> <password>` | Creates a new user with the specified username and password.    | `username`: The username<br>`password`: The password | `rob` and `robpass`     |
+| `flask user ranking [username] [competition_name]` | Retrieves the ranking of a user in a specified competition.   | `username`: The username<br>`competition_name`: The competition | `bob` and `code4bread`  |
+| `flask user list [format]`             | Lists users in the database in the specified format.             | `format`: Output format (`string` or `json`) | `string`                 |
+| **Testing Commands**                    |                                                                    |                                               |                          |
+| `flask test user [type]`               | Runs user-related tests.                                          | `type`: Type of tests (`unit`, `int`, `all`) | `all`                    |
 
 
 # Running the Project
