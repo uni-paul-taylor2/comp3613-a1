@@ -5,7 +5,7 @@ import json
 def create_competition(filename):
     with open(filename, 'r') as file:
         data = json.load(file)
-    competition = Competition(data['name'])
+    competition = Competition(data['name'],data['start'],data['stop'])
     db.session.commit()
     for item in data['participation']:
         competition.add_user(item['id'],item['points'],item['time'])

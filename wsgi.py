@@ -28,7 +28,7 @@ competition_cli = AppGroup('competition', help='Competition management commands'
 
 @competition_cli.command('create')
 @click.argument('filename', default='competition.json')
-def create_competition(filename):
+def create_competition_(filename):
     try:
         print(create_competition(filename))
     except:

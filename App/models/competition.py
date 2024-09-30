@@ -19,5 +19,5 @@ class Competition(db.Model):
     def add_user(self, id, points, time):
         user = User.query.get(id)
         user.points += points
-        Participant(user.id,points,time) #classes when initialised add themselves to the session
+        Participant(user.id,self.id,points,time) #classes when initialised add themselves to the session
         db.session.add(user) #add to session after edit

@@ -1,5 +1,7 @@
 {
     "name": "code4bread",
+    "start": 13123123,
+    "stop": 1231231233,
     "participation":[
         {"id":1,"points":10,"time":500},
         {"id":2,"points":11,"time":501}
