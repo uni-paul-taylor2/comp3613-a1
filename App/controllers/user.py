@@ -1,4 +1,4 @@
-from App.models import User
+from App.models import User, Competition, Participant
 from App.database import db
 
 def create_user(username, password):
@@ -32,4 +32,16 @@ def update_user(id, username):
     return None
     
 def get_user_ranking(username,competition_name):
-    pass
+    user = get_user_by_username(username)
+    competition = Competition.query.filter_by(name=competition_name).first()
+    participants = Participant.query.order_by(
+        Participant.points.desc(),
+        Participant.time.asc()
+    ).filter_by(competition_id=competition.id)
+    i = -1
+    for participant in participants:
+        i += 1
+        if participant.user_id == user.id:
+            return i
+    return i
+    

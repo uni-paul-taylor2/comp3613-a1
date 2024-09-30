@@ -15,3 +15,6 @@ class Participant(db.Model): #The bridge table
         self.points = points
         self.time = time
         db.session.add(self)
+
+    def __repr__(self):
+        return f" <user:{self.user_id}, competition:{self.competition_id}, points:{self.points}, time:{self.time}> "

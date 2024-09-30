@@ -16,8 +16,8 @@ class Competition(db.Model):
         self.stop_time = stop
         db.session.add(self)
 
-    def add_user(self, username, points, time):
-        user = User.query.filter_by(username=username).first()
+    def add_user(self, id, points, time):
+        user = User.query.get(id)
         user.points += points
-        participant = Participant(user.id,points,time) #classes when initialised add themselves to the session
+        Participant(user.id,points,time) #classes when initialised add themselves to the session
         db.session.add(user) #add to session after edit

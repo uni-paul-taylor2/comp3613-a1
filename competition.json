@@ -1,0 +1,7 @@
+{
+    "name": "code4bread",
+    "participation":[
+        {"id":1,"points":10,"time":500},
+        {"id":2,"points":11,"time":501}
+    ]
+}

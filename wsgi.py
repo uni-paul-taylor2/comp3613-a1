@@ -18,6 +18,7 @@ migrate = get_migrate(app)
 def init():
     initialize()
     print('database intialized')
+    print(create_competition('competition.json'))
 
 '''
 Competition Commands
