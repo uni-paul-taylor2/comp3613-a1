@@ -31,3 +31,5 @@ def update_user(id, username):
         return db.session.commit()
     return None
     
+def get_user_ranking(username,competition_name):
+    pass

@@ -5,7 +5,7 @@ from flask.cli import with_appcontext, AppGroup
 from App.database import db, get_migrate
 from App.models import User
 from App.main import create_app
-from App.controllers import ( create_user, get_all_users_json, get_all_users, initialize )
+from App.controllers import *
 
 
 # This commands file allow you to create convenient CLI commands for testing controllers
@@ -28,7 +28,18 @@ competition_cli = AppGroup('competition', help='Competition management commands'
 @competition_cli.command('create')
 @click.argument('filename', default='competition.json')
 def create_competition(filename):
-    pass
+    try:
+        print(create_competition(filename))
+    except:
+        print(f"Creating a competition from '{filename}' failed")
+
+@competition_cli.command('scores')
+@click.argument('competition_name', default='code4bread')
+def competition_scores(competition_name):
+    try:
+        print(list_competitors(competition_name))
+    except:
+        print(f"Error listing scores of the competition: {competition_name}")
 
 '''
 User Commands
@@ -45,10 +56,22 @@ user_cli = AppGroup('user', help='User management commands')
 @click.argument("username", default="rob")
 @click.argument("password", default="robpass")
 def create_user_command(username, password):
-    create_user(username, password)
-    print(f'{username} created!')
+    try:
+        create_user(username, password)
+        print(f'{username} created!')
+    except:
+        print(f"Failed to create user {username}")
 
 # this command will be : flask user create bob bobpass
+
+@user_cli.command('ranking')
+@click.argument('username', default='rob')
+@click.argument('competition_name', default='code4bread')
+def user_ranking(username,competition_name):
+    try:
+        print(get_user_ranking(username,competition_name))
+    except:
+        print(f"Failed to get the ranking of '{username}' in the competition '{competition_name}'")
 
 @user_cli.command("list", help="Lists users in the database")
 @click.argument("format", default="string")
