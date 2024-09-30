@@ -26,13 +26,21 @@ Competition Commands
 
 competition_cli = AppGroup('competition', help='Competition management commands')
 
-@competition_cli.command('create')
+@competition_cli.command('create', help="creates a competition record from a file")
 @click.argument('filename', default='competition.json')
 def create_competition_(filename):
     try:
         print(create_competition(filename))
     except:
         print(f"Creating a competition from '{filename}' failed")
+
+@competition_cli.command('list', help="lists all the competitions existing")
+def list_competitions_():
+    print(list_competitions())
+    #try:
+        #print(list_competitions())
+    #except:
+        #print("Failed to list out competitions :(")
 
 @competition_cli.command('scores')
 @click.argument('competition_name', default='code4bread')

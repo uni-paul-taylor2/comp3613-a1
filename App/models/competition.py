@@ -16,6 +16,9 @@ class Competition(db.Model):
         self.stop_time = stop
         db.session.add(self)
 
+    def __repr__(self):
+        return self.name
+
     def add_user(self, id, points, time):
         user = User.query.get(id)
         user.points += points

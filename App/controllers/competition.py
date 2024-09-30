@@ -30,3 +30,6 @@ def list_competitors(competition_name):
     competition = Competition.query.filter_by(name=competition_name).first()
     participants = competition.participants
     return sorted(participants, key=cmp_to_key(participant_comparator))
+
+def list_competitions():
+    return Competition.query.order_by(Competition.start_time.desc()).all()
